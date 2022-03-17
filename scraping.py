@@ -37,3 +37,4 @@ else:
     for n in range(len(val)) :
         print(n,'. ',val[n],'\n')
     # print(val[2])
+    
