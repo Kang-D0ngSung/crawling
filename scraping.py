@@ -7,6 +7,7 @@ url = 'https://www.youtube.com/watch?v=DnQ09ZZCjCs&t=7s'
 val = list()
 
 try :
+    saveHtml = open("./crawling_html.txt", 'w', encoding="UTF8")
     resp = requests.get(url)
     # html = urlopen(url)
     bsObject = BeautifulSoup(resp.text, "html.parser")
@@ -19,22 +20,10 @@ except Exception as Err :
     print('다른 에러 발생')
 
 else:
-    print('성공')
-    # print(bsObject)
-
-    # for meta in bsObject.body:
-    #     print(meta.get('content'))
-
-    # print(div.head.find('div', {"id", "watch7-content"}).get("content"))
+    print('접속 성공')
 
     for div in bsObject.head.find('div'):
-        # test = div.find('meta')
-        # print(test)
-        # print(div)
-        val.append(div)
-        # print(div.find('meta', {"id", "watch7-content"}).get("content"))
-        
-    for n in range(len(val)) :
-        print(n,'. ',val[n],'\n')
-    # print(val[2])
-    
+        saveHtml.write(div)
+
+
+saveHtml.close()
